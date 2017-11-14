@@ -123,7 +123,10 @@ class DateTime(BuiltinType, AnySimpleType):
 
     @check_no_collection
     def xmlvalue(self, value):
-
+        if type(value) == str:
+            # Allow DateTime value to be pre-formatted as a string
+            return value
+        
         # Bit of a hack, since datetime is a subclass of date we can't just
         # test it with an isinstance(). And actually, we should not really
         # care about the type, as long as it has the required attributes
